@@ -10,15 +10,17 @@ import type { ApiFetch } from '../../api/types';
 import { initTestI18n } from '../../components/catalogProvision/test/i18n';
 import { WizardTestProvidersWithI18n } from '../../components/catalogProvision/test/WizardTestProviders';
 
-const createVmListFetch = (): ApiFetch => async (route, options = {}) => {
-  const { decode } = options;
+const createVmListFetch =
+  (): ApiFetch =>
+  async (route, options = {}) => {
+    const { decode } = options;
 
-  if (route === 'v1/compute_instances') {
-    return decodeFulfillmentResponse(decode ?? ComputeInstancesListResponseSchema, { items: [] });
-  }
+    if (route === 'v1/compute_instances') {
+      return decodeFulfillmentResponse(decode ?? ComputeInstancesListResponseSchema, { items: [] });
+    }
 
-  throw new Error(`Unexpected route in VmListPage test: ${route}`);
-};
+    throw new Error(`Unexpected route in VmListPage test: ${route}`);
+  };
 
 const renderVmListPage = async (fetch: ApiFetch = createVmListFetch()) => {
   const i18n = await initTestI18n();
