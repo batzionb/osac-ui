@@ -12,6 +12,7 @@ OSAC UI is the web console for the [Open Sovereign AI Cloud (OSAC)](https://gith
 | `libs/ui-components/` | Shared PatternFly 6 component library |
 | `proxy/` | Go chi reverse proxy — OIDC auth + API forwarding |
 | `deploy/chart/` | Helm chart for Kubernetes/OpenShift deployment |
+| `scripts/` | Developer helper scripts |
 | `docs/` | Architecture and deployment documentation |
 
 ## Quick start
@@ -27,6 +28,24 @@ Start the Go proxy (requires a running fulfillment API) and Vite dev server:
 ```bash
 FULFILLMENT_API_URL=https://fulfillment.your-env.example.com pnpm dev
 ```
+
+## Local development with Keycloak (dev mode)
+
+When running the UI locally with `pnpm dev`, OIDC login will fail unless the Keycloak `osac-ui` client is configured to accept `localhost` redirect URIs. Run the following script against your target cluster to add the necessary redirect URIs:
+
+```bash
+export KUBECONFIG=~/envs/<your-env>/kubeconfig
+./scripts/enable-local-ui-redirect-uri.sh --namespace <osac-namespace>
+```
+
+The script auto-detects the Keycloak route and patches the `osac-ui` client to allow `http://localhost:5173` and `http://127.0.0.1:5173` callbacks. It tries `admin/admin` credentials first, then falls back to the `keycloak-initial-admin` Kubernetes secret. You can also pass credentials explicitly:
+
+```bash
+./scripts/enable-local-ui-redirect-uri.sh --namespace osac-devel \
+  --keycloak-username admin --keycloak-password <password>
+```
+
+Use `--dry-run` to preview changes or `--verify-only` to check if the redirect URIs are already configured. Run `./scripts/enable-local-ui-redirect-uri.sh --help` for all options.
 
 ## Documentation
 
