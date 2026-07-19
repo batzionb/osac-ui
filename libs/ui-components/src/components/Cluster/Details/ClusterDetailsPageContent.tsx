@@ -92,43 +92,42 @@ const ClusterDetailsPageContent = ({ cluster }: ClusterDetailViewProps) => {
       </PageSection>
 
       <PageSection hasBodyWrapper={false}>
-        <Grid hasGutter>
-          <GridItem md={6}>
-            <TabContent
-              eventKey={0}
-              id={CLUSTER_DETAIL_OVERVIEW_TAB_ID}
-              activeKey={activeTabKey}
-              hidden={0 !== activeTabKey}
-            >
-              <TabContentBody>
+        <TabContent
+          eventKey={0}
+          id={CLUSTER_DETAIL_OVERVIEW_TAB_ID}
+          activeKey={activeTabKey}
+          hidden={0 !== activeTabKey}
+        >
+          <TabContentBody>
+            <Grid hasGutter>
+              <GridItem md={6}>
                 <ClusterOverviewTab cluster={cluster} />
-              </TabContentBody>
-            </TabContent>
-            <TabContent
-              eventKey={1}
-              id={CLUSTER_DETAIL_NODE_SETS_TAB_ID}
-              activeKey={activeTabKey}
-              hidden={1 !== activeTabKey}
-            >
-              <TabContentBody>
-                <ClusterNodeSetsTab cluster={cluster} />
-              </TabContentBody>
-            </TabContent>
-          </GridItem>
-
-          <GridItem md={6}>
-            <Card isFullHeight>
-              <CardTitle>{t('Conditions')}</CardTitle>
-              <CardBody>
-                <ResourceConditionsTable
-                  ariaLabel={t('Cluster conditions')}
-                  conditions={cluster.status?.conditions ?? []}
-                  conditionResourceKind="cluster"
-                />
-              </CardBody>
-            </Card>
-          </GridItem>
-        </Grid>
+              </GridItem>
+              <GridItem md={6}>
+                <Card isFullHeight>
+                  <CardTitle>{t('Conditions')}</CardTitle>
+                  <CardBody>
+                    <ResourceConditionsTable
+                      ariaLabel={t('Cluster conditions')}
+                      conditions={cluster.status?.conditions ?? []}
+                      conditionResourceKind="cluster"
+                    />
+                  </CardBody>
+                </Card>
+              </GridItem>
+            </Grid>
+          </TabContentBody>
+        </TabContent>
+        <TabContent
+          eventKey={1}
+          id={CLUSTER_DETAIL_NODE_SETS_TAB_ID}
+          activeKey={activeTabKey}
+          hidden={1 !== activeTabKey}
+        >
+          <TabContentBody>
+            <ClusterNodeSetsTab cluster={cluster} />
+          </TabContentBody>
+        </TabContent>
       </PageSection>
     </>
   );
