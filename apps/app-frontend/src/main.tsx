@@ -29,7 +29,7 @@ const queryClient = new QueryClient({
       // mounting on the same page request the same query simultaneously.
       staleTime: 5_000,
       refetchOnMount: true,
-      refetchInterval: false,
+      refetchInterval: 30_000,
     },
   },
 });
