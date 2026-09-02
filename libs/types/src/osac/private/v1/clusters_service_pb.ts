@@ -17,7 +17,10 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
+import { file_cleanapi_cleanapi } from "../../../cleanapi/cleanapi_pb";
 import { file_google_api_annotations } from "../../../google/api/annotations_pb";
+import type { HttpBodySchema } from "../../../google/api/httpbody_pb";
+import { file_google_api_httpbody } from "../../../google/api/httpbody_pb";
 import type { FieldMask } from "../../../google/protobuf/field_mask_pb";
 import { file_google_protobuf_field_mask } from "../../../google/protobuf/field_mask_pb";
 import type { Cluster } from "./cluster_type_pb";
@@ -28,26 +31,60 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file osac/private/v1/clusters_service.proto.
  */
 export const file_osac_private_v1_clusters_service: GenFile = /*@__PURE__*/
-  fileDesc("CiZvc2FjL3ByaXZhdGUvdjEvY2x1c3RlcnNfc2VydmljZS5wcm90bxIPb3NhYy5wcml2YXRlLnYxInMKE0NsdXN0ZXJzTGlzdFJlcXVlc3QSEwoGb2Zmc2V0GAEgASgFSACIAQESEgoFbGltaXQYAiABKAVIAYgBARITCgZmaWx0ZXIYAyABKAlIAogBAUIJCgdfb2Zmc2V0QggKBl9saW1pdEIJCgdfZmlsdGVyIlwKFENsdXN0ZXJzTGlzdFJlc3BvbnNlEgwKBHNpemUYASABKAUSDQoFdG90YWwYAiABKAUSJwoFaXRlbXMYAyADKAsyGC5vc2FjLnByaXZhdGUudjEuQ2x1c3RlciIgChJDbHVzdGVyc0dldFJlcXVlc3QSCgoCaWQYASABKAkiPwoTQ2x1c3RlcnNHZXRSZXNwb25zZRIoCgZvYmplY3QYASABKAsyGC5vc2FjLnByaXZhdGUudjEuQ2x1c3RlciJBChVDbHVzdGVyc0NyZWF0ZVJlcXVlc3QSKAoGb2JqZWN0GAEgASgLMhgub3NhYy5wcml2YXRlLnYxLkNsdXN0ZXIiQgoWQ2x1c3RlcnNDcmVhdGVSZXNwb25zZRIoCgZvYmplY3QYASABKAsyGC5vc2FjLnByaXZhdGUudjEuQ2x1c3RlciIjChVDbHVzdGVyc0RlbGV0ZVJlcXVlc3QSCgoCaWQYASABKAkiGAoWQ2x1c3RlcnNEZWxldGVSZXNwb25zZSKAAQoVQ2x1c3RlcnNVcGRhdGVSZXF1ZXN0EigKBm9iamVjdBgBIAEoCzIYLm9zYWMucHJpdmF0ZS52MS5DbHVzdGVyEi8KC3VwZGF0ZV9tYXNrGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLkZpZWxkTWFzaxIMCgRsb2NrGAMgASgIIkIKFkNsdXN0ZXJzVXBkYXRlUmVzcG9uc2USKAoGb2JqZWN0GAEgASgLMhgub3NhYy5wcml2YXRlLnYxLkNsdXN0ZXIiIwoVQ2x1c3RlcnNTaWduYWxSZXF1ZXN0EgoKAmlkGAEgASgJIhgKFkNsdXN0ZXJzU2lnbmFsUmVzcG9uc2UyigYKCENsdXN0ZXJzEnUKBExpc3QSJC5vc2FjLnByaXZhdGUudjEuQ2x1c3RlcnNMaXN0UmVxdWVzdBolLm9zYWMucHJpdmF0ZS52MS5DbHVzdGVyc0xpc3RSZXNwb25zZSIggtPkkwIaEhgvYXBpL3ByaXZhdGUvdjEvY2x1c3RlcnMSfwoDR2V0EiMub3NhYy5wcml2YXRlLnYxLkNsdXN0ZXJzR2V0UmVxdWVzdBokLm9zYWMucHJpdmF0ZS52MS5DbHVzdGVyc0dldFJlc3BvbnNlIi2C0+STAidiBm9iamVjdBIdL2FwaS9wcml2YXRlL3YxL2NsdXN0ZXJzL3tpZH0SiwEKBkNyZWF0ZRImLm9zYWMucHJpdmF0ZS52MS5DbHVzdGVyc0NyZWF0ZVJlcXVlc3QaJy5vc2FjLnByaXZhdGUudjEuQ2x1c3RlcnNDcmVhdGVSZXNwb25zZSIwgtPkkwIqOgZvYmplY3RiBm9iamVjdCIYL2FwaS9wcml2YXRlL3YxL2NsdXN0ZXJzEoABCgZEZWxldGUSJi5vc2FjLnByaXZhdGUudjEuQ2x1c3RlcnNEZWxldGVSZXF1ZXN0Gicub3NhYy5wcml2YXRlLnYxLkNsdXN0ZXJzRGVsZXRlUmVzcG9uc2UiJYLT5JMCHyodL2FwaS9wcml2YXRlL3YxL2NsdXN0ZXJzL3tpZH0SlwEKBlVwZGF0ZRImLm9zYWMucHJpdmF0ZS52MS5DbHVzdGVyc1VwZGF0ZVJlcXVlc3QaJy5vc2FjLnByaXZhdGUudjEuQ2x1c3RlcnNVcGRhdGVSZXNwb25zZSI8gtPkkwI2OgZvYmplY3RiBm9iamVjdDIkL2FwaS9wcml2YXRlL3YxL2NsdXN0ZXJzL3tvYmplY3QuaWR9ElsKBlNpZ25hbBImLm9zYWMucHJpdmF0ZS52MS5DbHVzdGVyc1NpZ25hbFJlcXVlc3QaJy5vc2FjLnByaXZhdGUudjEuQ2x1c3RlcnNTaWduYWxSZXNwb25zZSIAYgZwcm90bzM", [file_google_api_annotations, file_google_protobuf_field_mask, file_osac_private_v1_cluster_type]);
+  fileDesc("CiZvc2FjL3ByaXZhdGUvdjEvY2x1c3RlcnNfc2VydmljZS5wcm90bxIPb3NhYy5wcml2YXRlLnYxIpEBChNDbHVzdGVyc0xpc3RSZXF1ZXN0EhMKBm9mZnNldBgBIAEoBUgAiAEBEhIKBWxpbWl0GAIgASgFSAGIAQESEwoGZmlsdGVyGAMgASgJSAKIAQESEgoFb3JkZXIYBCABKAlIA4gBAUIJCgdfb2Zmc2V0QggKBl9saW1pdEIJCgdfZmlsdGVyQggKBl9vcmRlciJcChRDbHVzdGVyc0xpc3RSZXNwb25zZRIMCgRzaXplGAEgASgFEg0KBXRvdGFsGAIgASgFEicKBWl0ZW1zGAMgAygLMhgub3NhYy5wcml2YXRlLnYxLkNsdXN0ZXIiIAoSQ2x1c3RlcnNHZXRSZXF1ZXN0EgoKAmlkGAEgASgJIj8KE0NsdXN0ZXJzR2V0UmVzcG9uc2USKAoGb2JqZWN0GAEgASgLMhgub3NhYy5wcml2YXRlLnYxLkNsdXN0ZXIiKgocQ2x1c3RlcnNHZXRLdWJlY29uZmlnUmVxdWVzdBIKCgJpZBgBIAEoCSIzCh1DbHVzdGVyc0dldEt1YmVjb25maWdSZXNwb25zZRISCgprdWJlY29uZmlnGAEgASgJIjEKI0NsdXN0ZXJzR2V0S3ViZWNvbmZpZ1ZpYUh0dHBSZXF1ZXN0EgoKAmlkGAEgASgJIigKGkNsdXN0ZXJzR2V0UGFzc3dvcmRSZXF1ZXN0EgoKAmlkGAEgASgJIi8KG0NsdXN0ZXJzR2V0UGFzc3dvcmRSZXNwb25zZRIQCghwYXNzd29yZBgBIAEoCSIvCiFDbHVzdGVyc0dldFBhc3N3b3JkVmlhSHR0cFJlcXVlc3QSCgoCaWQYASABKAkiQQoVQ2x1c3RlcnNDcmVhdGVSZXF1ZXN0EigKBm9iamVjdBgBIAEoCzIYLm9zYWMucHJpdmF0ZS52MS5DbHVzdGVyIkIKFkNsdXN0ZXJzQ3JlYXRlUmVzcG9uc2USKAoGb2JqZWN0GAEgASgLMhgub3NhYy5wcml2YXRlLnYxLkNsdXN0ZXIigAEKFUNsdXN0ZXJzVXBkYXRlUmVxdWVzdBIoCgZvYmplY3QYASABKAsyGC5vc2FjLnByaXZhdGUudjEuQ2x1c3RlchIvCgt1cGRhdGVfbWFzaxgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE1hc2sSDAoEbG9jaxgDIAEoCCJCChZDbHVzdGVyc1VwZGF0ZVJlc3BvbnNlEigKBm9iamVjdBgBIAEoCzIYLm9zYWMucHJpdmF0ZS52MS5DbHVzdGVyIiMKFUNsdXN0ZXJzRGVsZXRlUmVxdWVzdBIKCgJpZBgBIAEoCSIYChZDbHVzdGVyc0RlbGV0ZVJlc3BvbnNlIisKFUNsdXN0ZXJzU2lnbmFsUmVxdWVzdBIKCgJpZBgBIAEoCToGirUYAggBIiAKFkNsdXN0ZXJzU2lnbmFsUmVzcG9uc2U6Boq1GAIIATKWCgoIQ2x1c3RlcnMSdQoETGlzdBIkLm9zYWMucHJpdmF0ZS52MS5DbHVzdGVyc0xpc3RSZXF1ZXN0GiUub3NhYy5wcml2YXRlLnYxLkNsdXN0ZXJzTGlzdFJlc3BvbnNlIiCC0+STAhoSGC9hcGkvcHJpdmF0ZS92MS9jbHVzdGVycxJ/CgNHZXQSIy5vc2FjLnByaXZhdGUudjEuQ2x1c3RlcnNHZXRSZXF1ZXN0GiQub3NhYy5wcml2YXRlLnYxLkNsdXN0ZXJzR2V0UmVzcG9uc2UiLYLT5JMCJ2IGb2JqZWN0Eh0vYXBpL3ByaXZhdGUvdjEvY2x1c3RlcnMve2lkfRJwCg1HZXRLdWJlY29uZmlnEi0ub3NhYy5wcml2YXRlLnYxLkNsdXN0ZXJzR2V0S3ViZWNvbmZpZ1JlcXVlc3QaLi5vc2FjLnByaXZhdGUudjEuQ2x1c3RlcnNHZXRLdWJlY29uZmlnUmVzcG9uc2UiABKUAQoUR2V0S3ViZWNvbmZpZ1ZpYUh0dHASNC5vc2FjLnByaXZhdGUudjEuQ2x1c3RlcnNHZXRLdWJlY29uZmlnVmlhSHR0cFJlcXVlc3QaFC5nb29nbGUuYXBpLkh0dHBCb2R5IjCC0+STAioSKC9hcGkvcHJpdmF0ZS92MS9jbHVzdGVycy97aWR9L2t1YmVjb25maWcSagoLR2V0UGFzc3dvcmQSKy5vc2FjLnByaXZhdGUudjEuQ2x1c3RlcnNHZXRQYXNzd29yZFJlcXVlc3QaLC5vc2FjLnByaXZhdGUudjEuQ2x1c3RlcnNHZXRQYXNzd29yZFJlc3BvbnNlIgASjgEKEkdldFBhc3N3b3JkVmlhSHR0cBIyLm9zYWMucHJpdmF0ZS52MS5DbHVzdGVyc0dldFBhc3N3b3JkVmlhSHR0cFJlcXVlc3QaFC5nb29nbGUuYXBpLkh0dHBCb2R5Ii6C0+STAigSJi9hcGkvcHJpdmF0ZS92MS9jbHVzdGVycy97aWR9L3Bhc3N3b3JkEosBCgZDcmVhdGUSJi5vc2FjLnByaXZhdGUudjEuQ2x1c3RlcnNDcmVhdGVSZXF1ZXN0Gicub3NhYy5wcml2YXRlLnYxLkNsdXN0ZXJzQ3JlYXRlUmVzcG9uc2UiMILT5JMCKjoGb2JqZWN0YgZvYmplY3QiGC9hcGkvcHJpdmF0ZS92MS9jbHVzdGVycxKXAQoGVXBkYXRlEiYub3NhYy5wcml2YXRlLnYxLkNsdXN0ZXJzVXBkYXRlUmVxdWVzdBonLm9zYWMucHJpdmF0ZS52MS5DbHVzdGVyc1VwZGF0ZVJlc3BvbnNlIjyC0+STAjY6Bm9iamVjdGIGb2JqZWN0MiQvYXBpL3ByaXZhdGUvdjEvY2x1c3RlcnMve29iamVjdC5pZH0SgAEKBkRlbGV0ZRImLm9zYWMucHJpdmF0ZS52MS5DbHVzdGVyc0RlbGV0ZVJlcXVlc3QaJy5vc2FjLnByaXZhdGUudjEuQ2x1c3RlcnNEZWxldGVSZXNwb25zZSIlgtPkkwIfKh0vYXBpL3ByaXZhdGUvdjEvY2x1c3RlcnMve2lkfRJhCgZTaWduYWwSJi5vc2FjLnByaXZhdGUudjEuQ2x1c3RlcnNTaWduYWxSZXF1ZXN0Gicub3NhYy5wcml2YXRlLnYxLkNsdXN0ZXJzU2lnbmFsUmVzcG9uc2UiBoq1GAIIAUIpirUYJRIOb3NhYy5wdWJsaWMudjEiE3ByaXZhdGU6ZnVsZmlsbG1lbnRiBnByb3RvMw", [file_cleanapi_cleanapi, file_google_api_annotations, file_google_api_httpbody, file_google_protobuf_field_mask, file_osac_private_v1_cluster_type]);
 
 /**
  * @generated from message osac.private.v1.ClustersListRequest
  */
 export type ClustersListRequest = Message<"osac.private.v1.ClustersListRequest"> & {
   /**
+   * Index of the first result. If not specified the default value will be zero.
+   *
    * @generated from field: optional int32 offset = 1;
    */
   offset?: number | undefined;
 
   /**
+   * Maximum number of results to be returned by the server. When not specified all the results will be returned. Note
+   * that there may not be enough results to return, and that the server may decide, for performance reasons, to return
+   * less results than requested.
+   *
    * @generated from field: optional int32 limit = 2;
    */
   limit?: number | undefined;
 
   /**
+   * Filter criteria.
+   *
+   * The value of this parameter is a [CEL](https://cel.dev) expression used to select which objects to return. The
+   * built-in `this` variable refers to the object being tested and `now` refers to the current date and time. If the
+   * expression evaluates to `true` the object is included in the results. For example, to retrieve all clusters with
+   * names starting with `my`:
+   *
+   *     this.metadata.name.startsWith("my")
+   *
+   * If this isn't provided, or if the value is empty, then all the clusters that the user has permission to see will be
+   * returned. Not all CEL constructs are currently supported for implementation reasons; see the filter documentation
+   * (docs/FILTER.md) for the full details.
+   *
    * @generated from field: optional string filter = 3;
    */
   filter?: string | undefined;
+
+  /**
+   * Order criteria.
+   *
+   * The syntax of this parameter is similar to the syntax of the _order by_ clause of a SQL statement, but using the
+   * names of the attributes of the cluster instead of the names of the columns of a table. For example, in order to
+   * sort the clusters descending by API URL the value should be:
+   *
+   *     api_url desc
+   *
+   * If the parameter isn't provided, or if the value is empty, then the order of the results is undefined.
+   *
+   * @generated from field: optional string order = 4;
+   */
+  order?: string | undefined;
 };
 
 /**
@@ -62,16 +99,25 @@ export const ClustersListRequestSchema: GenMessage<ClustersListRequest> = /*@__P
  */
 export type ClustersListResponse = Message<"osac.private.v1.ClustersListResponse"> & {
   /**
+   * Actual number of items returned. Note that this may be smaller than the value requested in the `limit` parameter
+   * of the request if there are not enough items, or of the system decides that returning that number of items isn't
+   * feasible or convenient for performance reasons.
+   *
    * @generated from field: int32 size = 1;
    */
   size: number;
 
   /**
+   * Total number of items of the collection that match the search criteria, regardless of the number of results
+   * requested with the `limit` parameter.
+   *
    * @generated from field: int32 total = 2;
    */
   total: number;
 
   /**
+   * List of results.
+   *
    * @generated from field: repeated osac.private.v1.Cluster items = 3;
    */
   items: Cluster[];
@@ -119,6 +165,108 @@ export const ClustersGetResponseSchema: GenMessage<ClustersGetResponse> = /*@__P
   messageDesc(file_osac_private_v1_clusters_service, 3);
 
 /**
+ * @generated from message osac.private.v1.ClustersGetKubeconfigRequest
+ */
+export type ClustersGetKubeconfigRequest = Message<"osac.private.v1.ClustersGetKubeconfigRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
+
+/**
+ * Describes the message osac.private.v1.ClustersGetKubeconfigRequest.
+ * Use `create(ClustersGetKubeconfigRequestSchema)` to create a new message.
+ */
+export const ClustersGetKubeconfigRequestSchema: GenMessage<ClustersGetKubeconfigRequest> = /*@__PURE__*/
+  messageDesc(file_osac_private_v1_clusters_service, 4);
+
+/**
+ * @generated from message osac.private.v1.ClustersGetKubeconfigResponse
+ */
+export type ClustersGetKubeconfigResponse = Message<"osac.private.v1.ClustersGetKubeconfigResponse"> & {
+  /**
+   * @generated from field: string kubeconfig = 1;
+   */
+  kubeconfig: string;
+};
+
+/**
+ * Describes the message osac.private.v1.ClustersGetKubeconfigResponse.
+ * Use `create(ClustersGetKubeconfigResponseSchema)` to create a new message.
+ */
+export const ClustersGetKubeconfigResponseSchema: GenMessage<ClustersGetKubeconfigResponse> = /*@__PURE__*/
+  messageDesc(file_osac_private_v1_clusters_service, 5);
+
+/**
+ * @generated from message osac.private.v1.ClustersGetKubeconfigViaHttpRequest
+ */
+export type ClustersGetKubeconfigViaHttpRequest = Message<"osac.private.v1.ClustersGetKubeconfigViaHttpRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
+
+/**
+ * Describes the message osac.private.v1.ClustersGetKubeconfigViaHttpRequest.
+ * Use `create(ClustersGetKubeconfigViaHttpRequestSchema)` to create a new message.
+ */
+export const ClustersGetKubeconfigViaHttpRequestSchema: GenMessage<ClustersGetKubeconfigViaHttpRequest> = /*@__PURE__*/
+  messageDesc(file_osac_private_v1_clusters_service, 6);
+
+/**
+ * @generated from message osac.private.v1.ClustersGetPasswordRequest
+ */
+export type ClustersGetPasswordRequest = Message<"osac.private.v1.ClustersGetPasswordRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
+
+/**
+ * Describes the message osac.private.v1.ClustersGetPasswordRequest.
+ * Use `create(ClustersGetPasswordRequestSchema)` to create a new message.
+ */
+export const ClustersGetPasswordRequestSchema: GenMessage<ClustersGetPasswordRequest> = /*@__PURE__*/
+  messageDesc(file_osac_private_v1_clusters_service, 7);
+
+/**
+ * @generated from message osac.private.v1.ClustersGetPasswordResponse
+ */
+export type ClustersGetPasswordResponse = Message<"osac.private.v1.ClustersGetPasswordResponse"> & {
+  /**
+   * @generated from field: string password = 1;
+   */
+  password: string;
+};
+
+/**
+ * Describes the message osac.private.v1.ClustersGetPasswordResponse.
+ * Use `create(ClustersGetPasswordResponseSchema)` to create a new message.
+ */
+export const ClustersGetPasswordResponseSchema: GenMessage<ClustersGetPasswordResponse> = /*@__PURE__*/
+  messageDesc(file_osac_private_v1_clusters_service, 8);
+
+/**
+ * @generated from message osac.private.v1.ClustersGetPasswordViaHttpRequest
+ */
+export type ClustersGetPasswordViaHttpRequest = Message<"osac.private.v1.ClustersGetPasswordViaHttpRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
+
+/**
+ * Describes the message osac.private.v1.ClustersGetPasswordViaHttpRequest.
+ * Use `create(ClustersGetPasswordViaHttpRequestSchema)` to create a new message.
+ */
+export const ClustersGetPasswordViaHttpRequestSchema: GenMessage<ClustersGetPasswordViaHttpRequest> = /*@__PURE__*/
+  messageDesc(file_osac_private_v1_clusters_service, 9);
+
+/**
  * @generated from message osac.private.v1.ClustersCreateRequest
  */
 export type ClustersCreateRequest = Message<"osac.private.v1.ClustersCreateRequest"> & {
@@ -133,7 +281,7 @@ export type ClustersCreateRequest = Message<"osac.private.v1.ClustersCreateReque
  * Use `create(ClustersCreateRequestSchema)` to create a new message.
  */
 export const ClustersCreateRequestSchema: GenMessage<ClustersCreateRequest> = /*@__PURE__*/
-  messageDesc(file_osac_private_v1_clusters_service, 4);
+  messageDesc(file_osac_private_v1_clusters_service, 10);
 
 /**
  * @generated from message osac.private.v1.ClustersCreateResponse
@@ -150,37 +298,7 @@ export type ClustersCreateResponse = Message<"osac.private.v1.ClustersCreateResp
  * Use `create(ClustersCreateResponseSchema)` to create a new message.
  */
 export const ClustersCreateResponseSchema: GenMessage<ClustersCreateResponse> = /*@__PURE__*/
-  messageDesc(file_osac_private_v1_clusters_service, 5);
-
-/**
- * @generated from message osac.private.v1.ClustersDeleteRequest
- */
-export type ClustersDeleteRequest = Message<"osac.private.v1.ClustersDeleteRequest"> & {
-  /**
-   * @generated from field: string id = 1;
-   */
-  id: string;
-};
-
-/**
- * Describes the message osac.private.v1.ClustersDeleteRequest.
- * Use `create(ClustersDeleteRequestSchema)` to create a new message.
- */
-export const ClustersDeleteRequestSchema: GenMessage<ClustersDeleteRequest> = /*@__PURE__*/
-  messageDesc(file_osac_private_v1_clusters_service, 6);
-
-/**
- * @generated from message osac.private.v1.ClustersDeleteResponse
- */
-export type ClustersDeleteResponse = Message<"osac.private.v1.ClustersDeleteResponse"> & {
-};
-
-/**
- * Describes the message osac.private.v1.ClustersDeleteResponse.
- * Use `create(ClustersDeleteResponseSchema)` to create a new message.
- */
-export const ClustersDeleteResponseSchema: GenMessage<ClustersDeleteResponse> = /*@__PURE__*/
-  messageDesc(file_osac_private_v1_clusters_service, 7);
+  messageDesc(file_osac_private_v1_clusters_service, 11);
 
 /**
  * @generated from message osac.private.v1.ClustersUpdateRequest
@@ -211,7 +329,7 @@ export type ClustersUpdateRequest = Message<"osac.private.v1.ClustersUpdateReque
  * Use `create(ClustersUpdateRequestSchema)` to create a new message.
  */
 export const ClustersUpdateRequestSchema: GenMessage<ClustersUpdateRequest> = /*@__PURE__*/
-  messageDesc(file_osac_private_v1_clusters_service, 8);
+  messageDesc(file_osac_private_v1_clusters_service, 12);
 
 /**
  * @generated from message osac.private.v1.ClustersUpdateResponse
@@ -228,7 +346,37 @@ export type ClustersUpdateResponse = Message<"osac.private.v1.ClustersUpdateResp
  * Use `create(ClustersUpdateResponseSchema)` to create a new message.
  */
 export const ClustersUpdateResponseSchema: GenMessage<ClustersUpdateResponse> = /*@__PURE__*/
-  messageDesc(file_osac_private_v1_clusters_service, 9);
+  messageDesc(file_osac_private_v1_clusters_service, 13);
+
+/**
+ * @generated from message osac.private.v1.ClustersDeleteRequest
+ */
+export type ClustersDeleteRequest = Message<"osac.private.v1.ClustersDeleteRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
+
+/**
+ * Describes the message osac.private.v1.ClustersDeleteRequest.
+ * Use `create(ClustersDeleteRequestSchema)` to create a new message.
+ */
+export const ClustersDeleteRequestSchema: GenMessage<ClustersDeleteRequest> = /*@__PURE__*/
+  messageDesc(file_osac_private_v1_clusters_service, 14);
+
+/**
+ * @generated from message osac.private.v1.ClustersDeleteResponse
+ */
+export type ClustersDeleteResponse = Message<"osac.private.v1.ClustersDeleteResponse"> & {
+};
+
+/**
+ * Describes the message osac.private.v1.ClustersDeleteResponse.
+ * Use `create(ClustersDeleteResponseSchema)` to create a new message.
+ */
+export const ClustersDeleteResponseSchema: GenMessage<ClustersDeleteResponse> = /*@__PURE__*/
+  messageDesc(file_osac_private_v1_clusters_service, 15);
 
 /**
  * @generated from message osac.private.v1.ClustersSignalRequest
@@ -245,7 +393,7 @@ export type ClustersSignalRequest = Message<"osac.private.v1.ClustersSignalReque
  * Use `create(ClustersSignalRequestSchema)` to create a new message.
  */
 export const ClustersSignalRequestSchema: GenMessage<ClustersSignalRequest> = /*@__PURE__*/
-  messageDesc(file_osac_private_v1_clusters_service, 10);
+  messageDesc(file_osac_private_v1_clusters_service, 16);
 
 /**
  * @generated from message osac.private.v1.ClustersSignalResponse
@@ -258,13 +406,15 @@ export type ClustersSignalResponse = Message<"osac.private.v1.ClustersSignalResp
  * Use `create(ClustersSignalResponseSchema)` to create a new message.
  */
 export const ClustersSignalResponseSchema: GenMessage<ClustersSignalResponse> = /*@__PURE__*/
-  messageDesc(file_osac_private_v1_clusters_service, 11);
+  messageDesc(file_osac_private_v1_clusters_service, 17);
 
 /**
  * @generated from service osac.private.v1.Clusters
  */
 export const Clusters: GenService<{
   /**
+   * Retrieves the list of clusters.
+   *
    * @generated from rpc osac.private.v1.Clusters.List
    */
   list: {
@@ -273,6 +423,8 @@ export const Clusters: GenService<{
     output: typeof ClustersListResponseSchema;
   },
   /**
+   * Retrieves the details of one specific cluster.
+   *
    * @generated from rpc osac.private.v1.Clusters.Get
    */
   get: {
@@ -281,6 +433,69 @@ export const Clusters: GenService<{
     output: typeof ClustersGetResponseSchema;
   },
   /**
+   * Returns the admin Kubeconfig of the cluster.
+   *
+   * This intended for use with the gRPC protocol, and it isn't mapped to an HTTP endpoint. To retrieve the Kubeconfig
+   * via HTTP see the `ClustersGetKubeconfigViaHttp` method below.
+   *
+   * @generated from rpc osac.private.v1.Clusters.GetKubeconfig
+   */
+  getKubeconfig: {
+    methodKind: "unary";
+    input: typeof ClustersGetKubeconfigRequestSchema;
+    output: typeof ClustersGetKubeconfigResponseSchema;
+  },
+  /**
+   * Returns the admin Kubeconfig of the cluster.
+   *
+   * This is intended for use with HTTP and returns the YAML text of the Kubeconfig directly using the content type
+   * `application/yaml`.
+   *
+   * buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+   * buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+   *
+   * @generated from rpc osac.private.v1.Clusters.GetKubeconfigViaHttp
+   */
+  getKubeconfigViaHttp: {
+    methodKind: "unary";
+    input: typeof ClustersGetKubeconfigViaHttpRequestSchema;
+    output: typeof HttpBodySchema;
+  },
+  /**
+   * Returns the admin password of the cluster.
+   *
+   * This intended for use with the gRPC protocol, and it isn't mapped to an HTTP endpoint. To retrieve the password
+   * via HTTP see the `ClustersGetPasswordViaHttp` method below.
+   *
+   * @generated from rpc osac.private.v1.Clusters.GetPassword
+   */
+  getPassword: {
+    methodKind: "unary";
+    input: typeof ClustersGetPasswordRequestSchema;
+    output: typeof ClustersGetPasswordResponseSchema;
+  },
+  /**
+   * Returns the admin password of the cluster.
+   *
+   * This is intended for use with HTTP and returns the YAML text of the password directly using the content type
+   * `text/plain`.
+   *
+   * buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+   * buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+   *
+   * @generated from rpc osac.private.v1.Clusters.GetPasswordViaHttp
+   */
+  getPasswordViaHttp: {
+    methodKind: "unary";
+    input: typeof ClustersGetPasswordViaHttpRequestSchema;
+    output: typeof HttpBodySchema;
+  },
+  /**
+   * Creates a new cluster.
+   *
+   * Note that this operation is not allowed for regular users, only for the server. Regular users create clusters
+   * indirectly, creating a cluster order that will eventually result in the system creating a cluster.
+   *
    * @generated from rpc osac.private.v1.Clusters.Create
    */
   create: {
@@ -289,20 +504,44 @@ export const Clusters: GenService<{
     output: typeof ClustersCreateResponseSchema;
   },
   /**
-   * @generated from rpc osac.private.v1.Clusters.Delete
-   */
-  delete: {
-    methodKind: "unary";
-    input: typeof ClustersDeleteRequestSchema;
-    output: typeof ClustersDeleteResponseSchema;
-  },
-  /**
+   * Updates an existing cluster.
+   *
+   * In the HTTP+JSON version of the API this is mapped to the `PATCH` verb and the `update_mask` field is automatically
+   * populated from the list of fields present in the request body. For example, to update the `state` of a cluster to
+   * `READY` the request line should be like this:
+   *
+   * ```http
+   * PATCH /api/fulfillment/v1/clusters/123
+   * ```
+   *
+   * And the request body should be like this:
+   *
+   * ```json
+   * {
+   *   "status": {
+   *     "state": "CLUSTER_STATE_READY"
+   *   }
+   * }
+   * ```
+   *
+   * The response body will contain the modified object.
+   *
    * @generated from rpc osac.private.v1.Clusters.Update
    */
   update: {
     methodKind: "unary";
     input: typeof ClustersUpdateRequestSchema;
     output: typeof ClustersUpdateResponseSchema;
+  },
+  /**
+   * Delete a cluster.
+   *
+   * @generated from rpc osac.private.v1.Clusters.Delete
+   */
+  delete: {
+    methodKind: "unary";
+    input: typeof ClustersDeleteRequestSchema;
+    output: typeof ClustersDeleteResponseSchema;
   },
   /**
    * Indicates that something changed in the object or the system that may require reconciling the object.
